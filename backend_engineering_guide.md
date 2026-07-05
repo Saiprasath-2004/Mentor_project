@@ -1042,3 +1042,16 @@ Always build for:
 
 
 Build systems that do not break under pressure.
+
+
+
+Workflow For migrations:
+
+
+1. Change model
+
+2. alembic revision --autogenerate -m "add phone number"
+
+3. Check generated migration file
+
+4. alembic upgrade head

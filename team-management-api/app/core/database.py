@@ -8,10 +8,7 @@ from app.core.config import settings
 
 # Engine manages actual database connections
 # echo=True logs SQL queries (disable in production)
-engine = create_async_engine(
-    settings.DATABASE_URL,
-    echo=True
-)
+engine = create_async_engine( settings.DATABASE_URL, echo=True)
 
 # Session factory:
 # Creates new async DB sessions whenever application needs them

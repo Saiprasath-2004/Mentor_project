@@ -6,11 +6,7 @@ from  app.models.user import User
 class UserRepository:
 
     # Find user by email during login/register flow
-    async def get_by_email(
-            self,
-            db: AsyncSession,
-            email:str
-    ):
+    async def get_by_email( self,  db: AsyncSession, email:str):
         query = select(User).where(User.email==email)
 
         result = await db.execute(query)
@@ -19,11 +15,7 @@ class UserRepository:
     
 
     # Create new user record
-    async def create_user(
-            self,
-            db: AsyncSession,
-            user_data: dict
-    ):
+    async def create_user( self, db: AsyncSession, user_data: dict):
         user = User(**user_data)
         db.add(user)
 
