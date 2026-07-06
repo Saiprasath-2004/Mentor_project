@@ -23,3 +23,10 @@ class UserRepository:
         await db.refresh(user)
 
         return user
+    
+    # Find user using unique user ID from JWT token
+    async def get_by_id(self,db: AsyncSession,user_id: str):
+        query = select(User).where(User.id == user_id)
+        
+        result = await db.execute(query)
+        return result.scalar_one_or_none()
