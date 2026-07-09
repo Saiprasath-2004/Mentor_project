@@ -55,3 +55,30 @@ class User(Base):
         "Team",
         back_populates="owner"
     )
+
+
+    team_members = relationship(
+        "TeamMember",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+
+    #Task assigned to this user
+    assigned_tasks = relationship(
+        "Task",
+        foreign_keys="Task.assigned_to",
+        back_populates="assignee"
+    )
+
+    #Tasks created by this user
+    created_tasks = relationship(
+        "Task",
+        foreign_keys="Task.created_by",
+        back_populates="creator"
+    )
+
+    #Activites performed by user
+    activities = relationship(
+        "Activity",
+        back_populates="user"
+    )

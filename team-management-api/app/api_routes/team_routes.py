@@ -10,6 +10,11 @@ from app.dependencies.auth_dependencies import get_current_user
 from app.schemas.team_schemas import TeamCreate, TeamResponse, TeamUpdate
 from app.models.user import User
 from app.services.team_service import TeamService
+from app.services.task_service import TaskService
+from app.schemas.task_schemas import (
+    TaskCreate,
+    TaskResponse,
+)
 
 router =APIRouter(
     prefix="/teams",
@@ -17,6 +22,7 @@ router =APIRouter(
 )
 
 team_service = TeamService()
+task_service = TaskService()
 
 #Create a team for the currently authenticated user
 @router.post(
@@ -83,4 +89,43 @@ async def delete_team(team_id: UUID,
 
             )
 
+# ------------------------------------------------------------------
+# Create a task inside a team
+# ------------------------------------------------------------------
+@router.post(
+    "/{team_id}/tasks",
+    response_model=TaskResponse,
+    status_code=status.HTTP_201_CREATED
+)
+async def create_task(
+    team_id: UUID,
+    task_data: TaskCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return await task_service.create_task(
+        db,
+        team_id,
+        task_data,
+        current_user
+    )
+
+
+# ------------------------------------------------------------------
+# Return every task belonging to a team
+# ------------------------------------------------------------------
+@router.get(
+    "/{team_id}/tasks",
+    response_model=list[TaskResponse]
+)
+async def list_tasks(
+    team_id: UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return await task_service.list_tasks(
+        db,
+        team_id,
+        current_user
+    )
 

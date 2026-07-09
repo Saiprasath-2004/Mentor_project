@@ -49,3 +49,22 @@ class Team(Base):
         "User",
         back_populates="teams"
     )
+
+    members = relationship(
+        "TeamMember",
+        back_populates="team",
+        cascade="all, delete-orphan"
+    )
+
+    tasks = relationship(
+        "Task",
+        back_populates="team",
+        cascade="all, delete-orphan"
+    )
+
+    #Activity history for the team 
+    activities = relationship(
+        "Activity",
+        back_populates="team",
+        cascade="all, delete-orphan"
+    )
