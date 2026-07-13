@@ -68,3 +68,10 @@ class Team(Base):
         back_populates="team",
         cascade="all, delete-orphan"
     )
+
+    #chat relationship with the team
+    messages = relationship(
+        "ChatMessage",
+        back_populates="team",
+        cascade="all, delete-orphan"
+    )

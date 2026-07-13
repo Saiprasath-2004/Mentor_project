@@ -82,3 +82,23 @@ class User(Base):
         "Activity",
         back_populates="user"
     )
+
+    #Chat relationship with the user
+    messages = relationship(
+        "ChatMessage",
+        back_populates="sender"
+    )
+
+    conversations = relationship(
+        "ConversationParticipant",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+
+    direct_messages = relationship(
+        "DirectMessage",
+        back_populates="sender",
+        cascade="all, delete-orphan"
+    )
+
+    

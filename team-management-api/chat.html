@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<h2>Team Chat</h2>
+
+<input id="message">
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+<ul id="messages"></ul>
+
+<script>
+
+const socket = new WebSocket(
+"ws://127.0.0.1:8000/api/ws/teams/0bdebb78-e7e3-4892-ad2a-b00dc97991a8"
+);
+
+socket.onopen = () => {
+
+    console.log("Connected");
+
+}
+
+socket.onmessage = (event) => {
+
+    const li = document.createElement("li");
+
+    li.innerText = event.data;
+
+    document.getElementById("messages")
+            .appendChild(li);
+
+}
+
+function sendMessage(){
+
+    socket.send(
+        document.getElementById("message").value
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

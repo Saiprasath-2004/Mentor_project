@@ -12,6 +12,10 @@ from app.models.team_models import Team
 from app.models.team_member_models import TeamMember
 from app.models.task_models import Task
 from app.models.activity_model import Activity
+from app.models.chat_message_model import ChatMessage
+from app.models.conversation_model import Conversation
+from app.models.conversation_participant_model import ConversationParticipant
+from app.models.direct_message_model import DirectMessage
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

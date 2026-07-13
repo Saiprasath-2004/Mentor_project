@@ -1,12 +1,50 @@
-fastapi 
-uvicorn
-sqlalchemy 
+# ============================
+# FastAPI Framework
+# ============================
+fastapi
+uvicorn[standard]
+
+# ============================
+# Database
+# ============================
+sqlalchemy
 asyncpg
-alembic 
-pydantic-settings 
-python-jose 
-passlib 
-bcrypt 
-python-multipart
-email-validator
 psycopg2-binary
+alembic
+
+# ============================
+# Pydantic & Settings
+# ============================
+pydantic
+pydantic-settings
+email-validator
+
+# ============================
+# Authentication & Security
+# ============================
+python-jose
+passlib[bcrypt]
+bcrypt
+
+# ============================
+# Request Parsing
+# ============================
+python-multipart
+
+# ============================
+# Environment Variables
+# ============================
+python-dotenv
+
+# ============================
+# WebSocket & ASGI
+# ============================
+websockets
+httptools
+watchfiles
+h11
+
+# ============================
+# Optional Utilities
+# ============================
+PyYAML
