@@ -9,7 +9,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str                 # Used for signing JWT tokens
     ALGORITHM: str                  # JWT signing algorithm (ex: HS256)
     ACCESS_TOKEN_EXPIRE_MINUTES: int # Access token expiration time
-
+    FRONTEND_URL: str
+    
     model_config = SettingsConfigDict(
         env_file=".env"
     )

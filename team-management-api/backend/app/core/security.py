@@ -19,7 +19,7 @@ def hash_password(password: str) -> str:
 
 # Verify entered password against stored hashed password
 def verify_password(password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(password, hashed_password)
+        return pwd_context.verify(password, hashed_password)
 
 # Create signed JWT access token with user identity and expiration
 def create_access_token(user_id: str) -> str:
